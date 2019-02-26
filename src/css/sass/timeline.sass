@@ -54,8 +54,6 @@ body
 .timeline
   display: flex
   flex-direction: column
-  p
-    margin: 4px 0
   .timeline-header
     width: $timeline-header-width
     min-width: $timeline-header-width
@@ -201,15 +199,23 @@ body
           flex-direction: column
           align-items: flex-end
           flex-basis: 100%
+          overflow: visible
           visibility: hidden
+          p
+            margin: 2px 0
+            white-space: nowrap
           &.animation
             visibility: visible
             @include timelin-content-left-animation()
       &:nth-of-type(2n+1)
         .timeline-content
           visibility: hidden
+          overflow: visible
+          p
+            margin: 2px 0
           &.animation
             visibility: visible
+            white-space: nowrap
             @include timelin-content-right-animation()
         &::before
           content: ""

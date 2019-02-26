@@ -4,7 +4,9 @@ const gulp = require('gulp');
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
+const rename = require('gulp-rename');
 const cleanCss = require('gulp-clean-css'); // css压缩
+const minify = require('gulp-minify')
 const browserSync = require('browser-sync').create();
 const reload = browserSync.reload;
 sass.compiler = require('node-sass');
@@ -54,14 +56,14 @@ gulp.task('rollupjs', () => {
   return gulp.src(mainJs)
       .pipe(rollup(rollupConfig(false)))
       .pipe(size({ showFiles: true }))
-      .pipe(concat('index.js'))
+      .pipe(rename('index.js'))
       .pipe(gulp.dest('./dist/'))
       .pipe(reload({stream: true}))
 })
 
 gulp.task('js', () => {
   return gulp.src(mainJs)
-    .pipe(concat('index.js'))
+    .pipe(minify())
     .pipe(gulp.dest('./dist/'))
     .pipe(reload({stream: true}))
 })
@@ -80,7 +82,7 @@ gulp.task('server', function() {
   gulp.watch('./src/js/**/*.js', gulp.series('js'));
   // 监听html改变
   gulp.watch('./**/*.html', function () {
-    reload();
+    return reload();
   })
 });
 
