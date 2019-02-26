@@ -38,14 +38,12 @@ function checkList(list) {
 checkList(list);
 
 // 监听滚动条
-document.onload = function () {
-    let lock = true;
-    setTimeout(function(){lock = false;}, 10)
-    document.addEventListener('scroll', function(evt){
-        if(!lock) {
-        checkList(list);
-        lock = true
-        setTimeout(function(){lock = false}, 40)
-        }
-    })
-}
+let lock = true;
+setTimeout(function(){lock = false;}, 10)
+document.addEventListener('scroll', function(evt){
+    if(!lock) {
+    checkList(list);
+    lock = true
+    setTimeout(function(){lock = false}, 40)
+    }
+})
